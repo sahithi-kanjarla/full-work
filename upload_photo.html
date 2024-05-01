@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Photo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('events') }}">Events</a></li>
+                <li><a href="{{ url_for('clubs') }}">Clubs</a></li>
+                <li><a href="{{ url_for('post_event') }}">Post Event</a></li>
+                <li><a href="{{ url_for('add_club') }}">Add Club</a></li>
+                <li><a href="{{ url_for('delete_club') }}">Delete Club</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Upload Photo</h1>
+        <form action="{{ url_for('upload_photo', club_name=club.name) }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="photo">Upload Photo:</label>
+                <input type="file" id="photo" name="photo" required>
+            </div>
+            <div class="form-group">
+                <label for="info">Photo Information:</label>
+                <textarea id="info" name="info" rows="4" required></textarea>
+            </div>
+            <button type="submit">Upload</button>
+        </form>
+    </main>
+</body>
+</html>

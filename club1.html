@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club 1 Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('events') }}">Events</a></li>
+                <li><a href="{{ url_for('clubs') }}">Clubs</a></li>
+                <li><a href="{{ url_for('post_event') }}">Post Event</a></li>
+            </ul>
+        </nav>
+        <!-- Add Edit link for authorized users -->
+        {% if current_user.is_authenticated and current_user.username == 'club1' %}
+        <div class="edit-option">
+            <a href="{{ url_for('edit', club_id=1) }}">Edit</a>
+        </div>
+        {% endif %}
+    </header>
+    <main>
+        <h1>Club 1 Details</h1>
+        <p>Description: This is Club 1. LITGALOR</p>
+        <!-- Add more details about Club 1 here -->
+    </main>
+</body>
+</html>
+

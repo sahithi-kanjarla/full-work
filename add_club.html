@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Club</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 20px 0;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            resize: vertical;
+        }
+        
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        
+        p {
+            text-align: center;
+        }
+        
+        form p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Club</h1>
+    {% if current_user.is_authenticated %}
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('add_club') }}">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username"  required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"  required><br><br>
+        <label for="name">Club Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" required></textarea><br><br>
+        <label for="logo">Logo:</label><br>
+        <input type="file" id="logo" name="logo" accept="image/*"><br><br>
+        <input type="submit" value="Add Club">
+    </form>
+    {% else %}
+    <p>You must be logged in to add a club.</p>
+    <form method="POST" action="{{ url_for('login') }}">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+    {% endif %}
+</body>
+</html>
+
+
